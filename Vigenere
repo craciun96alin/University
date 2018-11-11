@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <string.h>
+ 
+int main()
+
+{
+
+    int select;// variable declairation
+
+    int i,j;
+
+    char passphrase[256]; char keyword[33];
+
+    int value;
+
+    while(1)// infinite loop
+
+    {
+
+        printf(“n1.Encrypt n”);// Display options for the user
+
+        printf(“2.Decryptn”);// Encrypt or Decrypt
+
+        scanf(“%d”,&select);// read the option selected
+
+        if (select == 1)
+
+        {
+
+            printf(“Please Enter Message to be encryptedn”);//text to be encrypted
+
+            scanf(“%s”,&passphrase);
+
+            printf(“Please Enter keywordn”); // key word
+
+            scanf(“%s”,&keyword);
+
+            for(i=0,j=0;i
+
+            {
+
+                if(j>=strlen(keyword))// repeat the key word
+
+                {
+
+                    j=0;
+
+                }
+
+                value = (((passphrase[i])-97)+((keyword[j])-97)); //logic (passphrase+key)%26
+
+                printf(“%c”, 97+ (value %26)); // display Encrypted text
+
+            }
+
+        }
+
+        else if (select == 2)
+
+        {
+
+            printf(“Please Enter Encrypted Message to be Decryptedn”); //text to be decrypted
+
+            scanf(“%s”,&passphrase);
+
+            printf(“Please Enter keyn”);//key
+
+            scanf(“%s”,&keyword);
+
+            for(i=0,j=0;i
+
+            {
+
+                if(j>=strlen(keyword))
+
+                {
+
+                   j=0;// repeate the key
+
+                }
+
+                value = ((passphrase[i])-96)-(keyword[j]-96); //logic (passphrase-key)%26
+
+                if( value < 0)
+
+                {
+
+                   value = value * -1; //make the value positive
+
+                }
+
+                printf(“%c”,97 + (value % 26)); // display dencrypted message
+
+            }
+
+        }
+
+        else
+
+            printf(“Please Choose a correct optionn”);
+
+    }
+
+}
